@@ -331,6 +331,16 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-
 <router-outlet />
+<app-footer></app-footer>
+<app-header></app-header>
+
+<ng-container *ngIf="todos.length > 0; else noTodos">
+  <ul>
+    <li *ngFor="let todo of todos"> {{ todo }}</li>
+  </ul>
+</ng-container>
+
+<ng-template #noTodos>
+  <p>no logic</p> 
+</ng-template>
