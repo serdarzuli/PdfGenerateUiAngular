@@ -10,9 +10,9 @@
       <div class="col-md-6">
         <form class="example-form">
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Ex. Pizza" value="Sushi">
+            <input matInput placeholder="Ex. Pizza" value="Sushi" #newTodo>
           </mat-form-field>
-          <button mat-flat-button color="blue">Basic</button>
+          <button mat-flat-button color="blue" type="button" (click)="addTodo(newTodo)">Add </button>
         </form>
       </div>
     </div>
@@ -26,11 +26,11 @@
                 <div
                   cdkDropList
                   #todoList="cdkDropList"
-                  [cdkDropListData]="todo"
+                  [cdkDropListData]="data.todo"
                   [cdkDropListConnectedTo]="[processingList]"
                   class="example-list"
                   (cdkDropListDropped)="drop($event)">
-                  @for (item of todo; track item) {
+                  @for (item of data.todo; track item) {
                     <div class="example-box" cdkDrag>
                       <img class="svg" src="assets/svg/clock.svg">
                       {{item}}</div>
@@ -44,11 +44,11 @@
                 <div
                   cdkDropList
                   #processingList="cdkDropList"
-                  [cdkDropListData]="processing"
+                  [cdkDropListData]="data.processing"
                   [cdkDropListConnectedTo]="[doneList, todoList]"
                   class="example-list"
                   (cdkDropListDropped)="drop($event)">
-                  @for (item of processing; track item) {
+                  @for (item of data.processing; track item) {
                     <div class="example-box" cdkDrag>
                       <img class="svg" src="assets/svg/hourglass.svg" alt="">
                       {{item}}</div>
@@ -62,11 +62,11 @@
                 <div
                   cdkDropList
                   #doneList="cdkDropList"
-                  [cdkDropListData]="done"
+                  [cdkDropListData]="data.done"
                   [cdkDropListConnectedTo]="[processingList]"
                   class="example-list"
                   (cdkDropListDropped)="drop($event)">
-                  @for (item of done; track item) {
+                  @for (item of data.done; track item) {
                     <div class="example-box" cdkDrag>
                       <img class="svg" src="assets/svg/like.svg" alt="">
                       {{item}}</div>
